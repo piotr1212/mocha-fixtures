@@ -4,7 +4,7 @@ var getFixtures = require("../index");
 var fs          = require("fs");
 
 var directory         = process.argv[2] || process.cwd();
-var fixturesDirectory = directory + "/tests/fixtures";
+var fixturesDirectory = directory + "/test/fixtures";
 if (!fs.existsSync(fixturesDirectory)) return;
 
 var fixtures = getFixtures(fixturesDirectory);
