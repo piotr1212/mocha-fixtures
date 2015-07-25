@@ -130,7 +130,8 @@ function buildFixtures(fixturesLoc, callback) {
   var fixtures = {};
   var files    = fs.readdirSync(fixturesLoc);
 
-  for (var filename of (files: Array)) {
+  for (var i = 0; i < files.length; i++) {
+    var filename = files[i];
     if (filename[0] === ".") continue;
 
     fixtures[filename] = get(filename, fixturesLoc + "/" + filename);
