@@ -49,6 +49,11 @@ function get(entryName, entryLoc) {
       var expectLoc = taskDir + "/expected.js";
       var execLoc   = taskDir + "/exec.js";
 
+      if (resolve(expectLoc + "on")) {
+        expectLoc += "on";
+        expectLocAlias += "on";
+      }
+
       if (fs.statSync(taskDir).isFile()) {
         var ext = path.extname(taskDir);
         if (ext !== ".js" && ext !== ".module.js") return;
