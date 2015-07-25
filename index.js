@@ -103,14 +103,12 @@ function get(entryName, entryLoc) {
 
       var sourceMappingsLoc = taskDir + "/source-mappings.json";
       if (pathExists.sync(sourceMappingsLoc)) {
-        test.options.sourceMap = true;
-        test.sourceMappings = require(sourceMappingsLoc);
+        test.sourceMappings = JSON.parse(readFile(sourceMappingsLoc));
       }
 
-      var sourceMap = taskDir + "/source-map.json";
-      if (pathExists.sync(sourceMap)) {
-        test.options.sourceMap = true;
-        test.sourceMap = require(sourceMap);
+      var sourceMapLoc = taskDir + "/source-map.json";
+      if (pathExists.sync(sourceMapLoc)) {
+        test.sourceMap = JSON.parse(readFile(sourceMapLoc));
       }
     }
   });
