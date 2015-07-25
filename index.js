@@ -1,6 +1,7 @@
 module.exports = buildFixtures;
 
 var pathExists = require("path-exists");
+var trimRight  = require("trim-right");
 var resolve    = require("try-resolve");
 var path       = require("path");
 var fs         = require("fs");
@@ -153,7 +154,7 @@ buildFixtures.readFile = readFile;
 
 function readFile(filename) {
   if (pathExists.sync(filename)) {
-    var file = fs.readFileSync(filename, "utf8").trimRight();
+    var file = trimRight(fs.readFileSync(filename, "utf8"));
     file = file.replace(/\r\n/g, "\n");
     return file;
   } else {
