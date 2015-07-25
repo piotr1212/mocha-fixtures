@@ -14,11 +14,15 @@ function humanize(val, noext) {
 function get(entryName, entryLoc) {
   var suites = [];
 
+  var rootOpts = {};
+  var rootOptsLoc = resolve(entryLoc + "/options");
+  if (rootOptsLoc) rootOpts = require(rootOptsLoc);
+
   _.each(fs.readdirSync(entryLoc), function (suiteName) {
     if (suiteName[0] === ".") return;
 
     var suite = {
-      options: {},
+      options: _.clone(rootOpts),
       tests: [],
       title: humanize(suiteName),
       filename: entryLoc + "/" + suiteName
@@ -49,7 +53,7 @@ function get(entryName, entryLoc) {
       var expectLoc = taskDir + "/expected.js";
       var execLoc   = taskDir + "/exec.js";
 
-      if (resolve(expectLoc + "on")) {
+      if (resolve.relative(expectLoc + "on")) {
         expectLoc += "on";
         expectLocAlias += "on";
       }
