@@ -120,7 +120,7 @@ function get(entryName, entryLoc) {
 
 function buildFixtures(fixturesLoc, callback) {
   try {
-    return callback();
+    if (callback) return callback();
   } catch (err) {
     if (err.code !== "MODULE_NOT_FOUND") {
       throw err;
